@@ -11,11 +11,13 @@ public class GameManager : MonoBehaviour
         BunnyEffect
     }
     public static GameManager instance;
-
     [SerializeField] Effects currentPlayerEffect = Effects.None;
     [SerializeField] Effects currentEnemyEffect = Effects.None;
     public SnakeAndLadderSO snakeAndLadderData;
-
+    public bool isPlayerTurn = true;
+    public bool canRollDice = true;
+    public int playerPosition = 0;
+    public int enemyPosition = 0;
     public class Grid
     {
         public Tile[] tiles = new Tile[100];
@@ -36,23 +38,22 @@ public class GameManager : MonoBehaviour
 
     void InitializeGrid()
     {
-        Grid grid = new Grid();
+        // Grid grid = new Grid();
 
-        foreach(var snake in snakeAndLadderData.snakes)
-        {
-            grid.tiles[snake.startPos].hasSnake = true;
-            grid.tiles[snake.startPos].snakeEndPos = snake.endPos;
-        }
+        // foreach(var snake in snakeAndLadderData.snakes)
+        // {
+        //     grid.tiles[snake.startPos].hasSnake = true;
+        //     grid.tiles[snake.startPos].snakeEndPos = snake.endPos;
+        // }
 
-        foreach(var ladder in snakeAndLadderData.ladders)
-        {
-            grid.tiles[ladder.startPos].hasLadder = true;
-            grid.tiles[ladder.startPos].ladderEndPos = ladder.endPos;
-        }
+        // foreach(var ladder in snakeAndLadderData.ladders)
+        // {
+        //     grid.tiles[ladder.startPos].hasLadder = true;
+        //     grid.tiles[ladder.startPos].ladderEndPos = ladder.endPos;
+        // }
     }
 
-
-    public void CalculateEnd(int startPos, int diceOutcome, Effects effects)
+    public int CalculateEnd(int startPos, int diceOutcome, Effects effects)
     {
         // startPos += diceOutcome;
         
@@ -60,11 +61,27 @@ public class GameManager : MonoBehaviour
         // {
              
         // }
+
+        return -1;
     }
 
-    public void CheckPlayerDrag(int startTileIndex, int diceRoll, int droppedTileIndex, Effects effect)
+    public void CheckPlayerDrag(int diceRoll, int droppedTileIndex)
     {
-        CalculateEnd(startTileIndex, diceRoll, effect);
+        Debug.Log("Player dropped on tile: " + droppedTileIndex);
+        // Find the correct tile based on dice roll and effects
+        int correctTile = CalculateEnd(playerPosition, diceRoll, currentPlayerEffect);
+
+        // Check where player was dropped
+        if(droppedTileIndex != correctTile)
+        {
+            // Move player to starting tile cuz theyre wrong
+            UndoMove(playerPosition, true);
+        }
+        else
+        {
+            // Move player to dropped tile
+            playerPosition = droppedTileIndex;
+        }
     }
 
     public void HandlePlayerTurn()
@@ -86,14 +103,20 @@ public class GameManager : MonoBehaviour
 
         // Check where that dice roll lands
 
-
     }
 
-    public void FalseMovement(int calculatedPos, int endPos)
+    public void UndoMove(int startPos, bool isPlayer)
     {
-        if(calculatedPos != endPos)
+        if(isPlayer)
         {
-            // move pawn to calculatedPos
+            // Move player back to startPos
+            // Set turn to enemy turn
+            isPlayerTurn = false;
+        }
+        else
+        {
+            // Move enemy back to startPos
+            isPlayerTurn = true;
         }
     }
     
