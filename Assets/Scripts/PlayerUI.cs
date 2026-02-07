@@ -11,16 +11,17 @@ public class PlayerUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     RectTransform rectTransform;
     public int playerDice;
     public bool movedByManager = false;
+    public GameObject playerGameObject;
     private void Awake()
     {
         if(instance == null)
+        {
             instance = this;
-        else{
-            Destroy(gameObject);
-            return;
+            playerGameObject = gameObject;
+            canvas = GetComponentInParent<Canvas>();
+            rectTransform = GetComponent<RectTransform>();
+            
         }
-        canvas = GetComponentInParent<Canvas>();
-        rectTransform = GetComponent<RectTransform>();
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -36,17 +37,17 @@ public class PlayerUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        GetComponent<Image>().raycastTarget = true;
-        if(!movedByManager)
-        {
-            // Return to original position but dont change turn
-            GameUIManager.instance.SnapToSlot(gameObject, GameManager.instance.playerPosition);
-            return;
-        }
-        else
-        {
-            // GameManager.instance.CheckPlayerDrag(playerDice, );
-        }
+        // GetComponent<Image>().raycastTarget = true;
+        // if(!movedByManager)
+        // {
+        //     // Return to original position but dont change turn
+        //     GameUIManager.instance.SnapToSlot(gameObject, GameManager.instance.playerPosition);
+        //     return;
+        // }
+        // else
+        // {
+        //     // GameManager.instance.CheckPlayerDrag(playerDice, );
+        // }
     }
 
     // Start is called before the first frame update

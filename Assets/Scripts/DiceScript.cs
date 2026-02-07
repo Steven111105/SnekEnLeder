@@ -9,11 +9,24 @@ public class DiceScript : MonoBehaviour
     public Sprite[] diceFaces;
     public void RollDice()
     {
+        int randomRoll = Random.Range(1, 7);
+        diceImage.sprite = diceFaces[randomRoll - 1];
+        // Debug.Log(GameManager.instance? "":"No GameManager instance found!");
+        // GameManager.instance.playerPosition += randomRoll;
+        // if(GameManager.instance.grid[GameManager.instance.playerPosition].hasSnake)
+        // {
+        //     GameManager.instance.playerPosition = GameManager.instance.grid[GameManager.instance.playerPosition].snakeEndPos;
+        // }
+        // else if(GameManager.instance.grid[GameManager.instance.playerPosition].hasLadder)
+        // {
+        //     GameManager.instance.playerPosition = GameManager.instance.grid[GameManager.instance.playerPosition].ladderEndPos;
+        // }
+        // GameUIManager.instance.SnapToSlot(PlayerUI.instance.gameObject, GameManager.instance.playerPosition);
         // Check if its players turn
-        if(GameManager.instance.canRollDice == false)
-            return;
+        // if(GameManager.instance.canRollDice == false)
+        //     return;
 
-        StartCoroutine(AnimateDiceRoll());
+        // StartCoroutine(AnimateDiceRoll());
     }
 
     IEnumerator AnimateDiceRoll()

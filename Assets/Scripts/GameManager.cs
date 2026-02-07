@@ -18,7 +18,17 @@ public class GameManager : MonoBehaviour
     public bool canRollDice = true;
     public int playerPosition = 0;
     public int enemyPosition = 0;
-    Tile[] grid;
+    public Tile[] grid;
+
+    private void Awake()
+    {
+        if(instance == null)
+            instance = this;
+        else{
+            Destroy(gameObject);
+            return;
+        }
+    }
 
     public struct Tile
     {
@@ -49,47 +59,48 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         InitializeGrid();
+        playerPosition = -1;
     }
 
     void InitializeGrid()
     {
         grid = new Tile[100];
 
-        foreach(int index in boardData.redTiles)
-        {
-            grid[index].tileColor = Tile.TileColor.Red;
-        }
+        // foreach(int index in boardData.redTiles)
+        // {
+        //     grid[index].tileColor = Tile.TileColor.Red;
+        // }
 
-        foreach(int index in boardData.blueTiles)
-        {
-            grid[index].tileColor = Tile.TileColor.Blue;
-        }
+        // foreach(int index in boardData.blueTiles)
+        // {
+        //     grid[index].tileColor = Tile.TileColor.Blue;
+        // }
 
-        foreach(int index in boardData.greenTiles)
-        {
-            grid[index].tileColor = Tile.TileColor.Green;
-        }
+        // foreach(int index in boardData.greenTiles)
+        // {
+        //     grid[index].tileColor = Tile.TileColor.Green;
+        // }
 
-        foreach(int index in boardData.yellowTiles)
-        {
-            grid[index].tileColor = Tile.TileColor.Yellow;
-        }
+        // foreach(int index in boardData.yellowTiles)
+        // {
+        //     grid[index].tileColor = Tile.TileColor.Yellow;
+        // }
 
-        foreach(int index in boardData.whiteTiles)
-        {
-            grid[index].tileColor = Tile.TileColor.White;
-        }
+        // foreach(int index in boardData.whiteTiles)
+        // {
+        //     grid[index].tileColor = Tile.TileColor.White;
+        // }
 
         foreach(var snake in boardData.snakes)
         {
-            grid[snake.startPos].hasSnake = true;
-            grid[snake.startPos].snakeEndPos = snake.endPos;
+            grid[snake.endPos-1].hasSnake = true;
+            grid[snake.endPos-1].snakeEndPos = snake.startPos-1;
         }
 
         foreach(var ladder in boardData.ladders)
         {
-            grid[ladder.startPos].hasLadder = true;
-            grid[ladder.startPos].ladderEndPos = ladder.endPos;
+            grid[ladder.startPos-1].hasLadder = true;
+            grid[ladder.startPos-1].ladderEndPos = ladder.endPos-1;
         }
     }
 
@@ -160,4 +171,10 @@ public class GameManager : MonoBehaviour
         }
     }
     
+    public void HandleSnakeKilled()
+    {
+        Debug.Log("Snake has been killed!");
+        GameUIManager.instance.HideSnake();
+        // Handle end of game logic here
+    }
 }
