@@ -1664,6 +1664,7 @@ MonoBehaviour:
   - name: SafeLava
     clip: {fileID: 8300000, guid: 7a418df1bfc257f4a9cbd414eb64f88e, type: 3}
     volume: 1
+  isTest: 0
 --- !u!4 &1132226769
 Transform:
   m_ObjectHideFlags: 0

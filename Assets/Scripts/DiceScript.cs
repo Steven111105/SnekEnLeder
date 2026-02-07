@@ -38,6 +38,8 @@ public class DiceScript : MonoBehaviour
         int finalFace = 4;
         diceImage.sprite = diceFaces[finalFace - 1];
         gameObject.GetComponent<Button>().enabled = false;
+        GameUIManager.instance.playerPositionIndex = 3;
+        GameUIManager.instance.SnapToSlot(PlayerUI.instance.playerGameObject, 3);
         
         foreach (Transform child in transform)
         {
