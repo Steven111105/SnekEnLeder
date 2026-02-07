@@ -3,9 +3,15 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Grapling : MonoBehaviour
+public class Grappling : MonoBehaviour
 {
+    Transform gunObject;
     public float grapleSpeed = 3f;
+
+    private void Start()
+    {
+        gunObject = transform.GetChild(0);
+    }
     void Update()
     {
         // Screen to world point direction
@@ -14,15 +20,17 @@ public class Grapling : MonoBehaviour
 
         // Then normalize direction, call raycast til hit wall
         Vector2 direction = (mousePos - playerPos).normalized;
+
+        gunObject.transform.localEulerAngles = new Vector3(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90f);
         
         if(Input.GetMouseButtonDown(0))
         {
-            Grappling(direction);
+            LaunchGrapple(direction);
         }
 
     }
 
-    public void Grappling(Vector2 dir)
+    public void LaunchGrapple(Vector2 dir)
     {
         PlayerUI.instance.playerGameObject.GetComponent<Rigidbody2D>().velocity = dir * grapleSpeed;
     }

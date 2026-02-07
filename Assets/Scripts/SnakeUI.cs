@@ -9,7 +9,6 @@ public class SnakeUI : MonoBehaviour
     public static SnakeUI instance;
     Slider snakeHPBar;
     public int snakeMaxHP = 15;
-
     public int snakeCurrentHP;
 
     private void Awake()

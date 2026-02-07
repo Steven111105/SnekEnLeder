@@ -5,34 +5,27 @@ using UnityEngine.UI;
 
 public class DiceScript : MonoBehaviour
 {
-    [SerializeField] Image diceImage;
+    Image diceImage;
     public Sprite[] diceFaces;
+
+    private void Start()
+    {
+        diceImage = GetComponent<Image>();
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(false);
+        }
+    }
     public void RollDice()
     {
         int randomRoll = Random.Range(1, 7);
         diceImage.sprite = diceFaces[randomRoll - 1];
-        // Debug.Log(GameManager.instance? "":"No GameManager instance found!");
-        // GameManager.instance.playerPosition += randomRoll;
-        // if(GameManager.instance.grid[GameManager.instance.playerPosition].hasSnake)
-        // {
-        //     GameManager.instance.playerPosition = GameManager.instance.grid[GameManager.instance.playerPosition].snakeEndPos;
-        // }
-        // else if(GameManager.instance.grid[GameManager.instance.playerPosition].hasLadder)
-        // {
-        //     GameManager.instance.playerPosition = GameManager.instance.grid[GameManager.instance.playerPosition].ladderEndPos;
-        // }
-        // GameUIManager.instance.SnapToSlot(PlayerUI.instance.gameObject, GameManager.instance.playerPosition);
-        // Check if its players turn
-        // if(GameManager.instance.canRollDice == false)
-        //     return;
-
-        // StartCoroutine(AnimateDiceRoll());
+        StartCoroutine(AnimateDiceRoll());
     }
 
     IEnumerator AnimateDiceRoll()
     {
-        GameManager.instance.canRollDice = false;
-        float rollDuration = 1.5f;
+        float rollDuration = 1f;
         float t = 0;
         while (t < rollDuration)
         {
@@ -41,11 +34,14 @@ public class DiceScript : MonoBehaviour
             t += Time.deltaTime;
             yield return null;
         }
-        int finalFace = Random.Range(1, 7);
+        int finalFace = 4;
         diceImage.sprite = diceFaces[finalFace - 1];
-
-        // Tell player they can be draged, and give them the dice outcome
-        PlayerUI.instance.playerDice = finalFace;
+        gameObject.GetComponent<Button>().enabled = false;
+        
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(true);
+        }
         yield return null;
     }
 }

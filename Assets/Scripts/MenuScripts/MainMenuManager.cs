@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;   
+using UnityEngine.SceneManagement;
 public class MainMenuManager : MonoBehaviour
 {
     public Button playButton;
@@ -9,7 +10,7 @@ public class MainMenuManager : MonoBehaviour
     public void Play()
     {
         // Load game scene
-        // TransitionManager.LoadAsnyc(TransitionManager.SceneEnum.Gameplay);
+        SceneManager.LoadSceneAsync("Gameplay");
     }
 
     public void Quit()
