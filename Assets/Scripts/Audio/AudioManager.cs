@@ -10,7 +10,7 @@ public class AudioManager : MonoBehaviour
     {
         public string name;
         public AudioClip clip;
-        public float volume;
+        public float volume = 1f;
     }
     public static AudioManager instance;
     [SerializeField] AudioMixer audioMixer;

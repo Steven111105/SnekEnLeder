@@ -1928,7 +1928,37 @@ MonoBehaviour:
   sfxSlider: {fileID: 1715767370}
   bgmMixerGroup: {fileID: -707569834186738191, guid: c05e0895a38c284498987151e4505278, type: 2}
   sfxMixerGroup: {fileID: 4896038588476353999, guid: c05e0895a38c284498987151e4505278, type: 2}
-  sfxList: []
+  sfxList:
+  - name: DiceRoll
+    clip: {fileID: 8300000, guid: c3d28cefa62c2634fb8db3cebef4b2b4, type: 3}
+    volume: 1
+  - name: DiceStuck
+    clip: {fileID: 8300000, guid: bfb7a915b3da3e64ca245ee78eaa4967, type: 3}
+    volume: 1
+  - name: EatPlayer
+    clip: {fileID: 8300000, guid: f966a114910b9564c9b3c04aa89687b9, type: 3}
+    volume: 1
+  - name: SnakeBloat
+    clip: {fileID: 8300000, guid: e70a1a111ab70594cbcc5b46ba4cd9be, type: 3}
+    volume: 1
+  - name: SnakeExplode
+    clip: {fileID: 8300000, guid: e9b368d8b6494fb4b90a376e16f4fe5e, type: 3}
+    volume: 1
+  - name: ShootGrapple
+    clip: {fileID: 8300000, guid: c5d2c7a0057d3f1408c01ee1ad038ce1, type: 3}
+    volume: 1
+  - name: CollectGreenItem
+    clip: {fileID: 8300000, guid: 88ea340609f22e14baacda5c60d25642, type: 3}
+    volume: 1
+  - name: CollectWhiteItem
+    clip: {fileID: 8300000, guid: aa13f8bafb9f6f84f852ebe7ce964f39, type: 3}
+    volume: 1
+  - name: HitBomb
+    clip: {fileID: 8300000, guid: 0f19a41b3c2ff734494a670c4ec6f582, type: 3}
+    volume: 1
+  - name: SafeLava
+    clip: {fileID: 8300000, guid: 7a418df1bfc257f4a9cbd414eb64f88e, type: 3}
+    volume: 1
 --- !u!4 &1132226769
 Transform:
   m_ObjectHideFlags: 0
