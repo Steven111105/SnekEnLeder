@@ -26,6 +26,6 @@ public class GameManager : MonoBehaviour
         AudioManager.instance.PlayBGM(null);
         // Change scene to grapling
         instance = null;
-        SceneManager.LoadSceneAsync("GrapplingScene");
+        TransitionManager.instance.FadeWhite("GrapplingScene");
     }
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4431130644483446331}
   m_Layer: 6
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Birds
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: -1744598986, guid: 60b4ab1f53e39e342831a7e86739d353, type: 3}
+  m_Sprite: {fileID: 1185268412, guid: 7e62b59c90267f542a74b4e2ca1156ec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

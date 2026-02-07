@@ -24,7 +24,7 @@ public class PauseMenuManager : MonoBehaviour
         }
     }
     
-    public void BackTOMenu()
+    public void BackToMenu()
     {
         // TransitionManager.LoadAsnyc(TransitionManager.SceneEnum.MainMenu);
     }

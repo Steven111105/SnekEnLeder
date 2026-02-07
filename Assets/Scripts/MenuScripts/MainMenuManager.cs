@@ -9,7 +9,6 @@ public class MainMenuManager : MonoBehaviour
     public Button quitButton;
     public void Play()
     {
-        // Load game scene
         SceneManager.LoadSceneAsync("Gameplay");
     }
 

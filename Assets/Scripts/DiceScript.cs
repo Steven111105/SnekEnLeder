@@ -7,6 +7,14 @@ public class DiceScript : MonoBehaviour
 {
     Image diceImage;
     public Sprite[] diceFaces;
+    public Sprite[] upDiceFaces;
+    int upCrackIndex = 0;
+    public Sprite[] downDiceFaces;
+    int downCrackIndex = 0;
+    public Sprite[] leftDiceFaces;
+    int leftCrackIndex = 0;
+    public Sprite[] rightDiceFaces;
+    int rightCrackIndex = 0;
 
     private void Start()
     {
@@ -46,5 +54,74 @@ public class DiceScript : MonoBehaviour
             child.gameObject.SetActive(true);
         }
         yield return null;
+    }
+
+    public void CrackDice(GameUIManager.Direction direction)
+    {
+        switch (direction)
+        {
+            case GameUIManager.Direction.Up:
+                if (upCrackIndex < upDiceFaces.Length)
+                {
+                    if(upCrackIndex == 0)
+                    {
+                        transform.GetChild((int)direction).GetComponent<Image>().color = Color.white; 
+                    }
+                    else
+                    {
+                        transform.GetChild((int)direction).GetComponent<Image>().sprite = upDiceFaces[upCrackIndex];
+                    }
+                    upCrackIndex++;
+                    AudioManager.instance.PlaySFX("DiceCrack");
+                }
+                break;
+            case GameUIManager.Direction.Down:
+                if (downCrackIndex < downDiceFaces.Length)
+                {
+                    if(downCrackIndex == 0)
+                    {
+                        transform.GetChild((int)direction).GetComponent<Image>().color = Color.white;
+                    }
+                    else
+                    {
+                        transform.GetChild((int)direction).GetComponent<Image>().sprite = downDiceFaces[downCrackIndex];
+                    }
+                    downCrackIndex++;
+                    AudioManager.instance.PlaySFX("DiceCrack");
+                }
+                break;
+            case GameUIManager.Direction.Left:
+                if (leftCrackIndex < leftDiceFaces.Length)
+                {
+                    if(leftCrackIndex == 0)
+                    {
+                        transform.GetChild((int)direction).GetComponent<Image>().color = Color.white;
+                    }
+                    else
+                    {
+                        transform.GetChild((int)direction).GetComponent<Image>().sprite = leftDiceFaces[leftCrackIndex];
+                    }
+                    leftCrackIndex++;
+                    AudioManager.instance.PlaySFX("DiceCrack");
+                }
+                break;
+            case GameUIManager.Direction.Right:
+                if (rightCrackIndex < rightDiceFaces.Length)
+                {
+                    if(rightCrackIndex == 0)
+                    {
+                        transform.GetChild((int)direction).GetComponent<Image>().color = Color.white;
+                    }
+                    else
+                    {
+                        
+                        transform.GetChild((int)direction).GetComponent<Image>().sprite = rightDiceFaces[rightCrackIndex];
+                    }
+                    rightCrackIndex++;
+                    AudioManager.instance.PlaySFX("DiceCrack");
+                }
+                break;
+        }
+        
     }
 }

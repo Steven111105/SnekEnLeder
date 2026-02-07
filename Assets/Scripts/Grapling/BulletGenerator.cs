@@ -1,15 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class BulletGenerator : MonoBehaviour
 {
+    public static BulletGenerator instance;
     public GameObject bulletPrefab;
     public float bulletSpeed = 5f;
-    [SerializeField] GameObject[] items = new GameObject[4];
+    public bool birdHostile = false;
+    [SerializeField] GameObject[] items;
 
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
+        birdHostile = false;
         StartCoroutine(ShootBullets());
         StartCoroutine(SpawnItems());
     }
@@ -30,17 +38,21 @@ public class BulletGenerator : MonoBehaviour
 
     IEnumerator SpawnItems()
     {
-        int whiteSpawned = 0;
-        while(whiteSpawned < 3)
+        int index = 0;
+        while(index < 4)
         {
             yield return new WaitForSeconds(15f);
-            Vector2 spawnPos = Random.insideUnitCircle * 8f;
-            items[whiteSpawned].SetActive(true);
-            StartCoroutine(HideItemAfterTime(items[whiteSpawned], 10f));
-            whiteSpawned++;
+            Vector2 spawnPos = Random.insideUnitCircle * 5f;
+            GameObject item = Instantiate(items[index], spawnPos, Quaternion.identity);
+            item.SetActive(true);
+            
+            if(index < 3)
+                StartCoroutine(HideItemAfterTime(items[index], 10f));
+            else
+                birdHostile = true;
+            
+            index++;
         }
-        yield return new WaitForSeconds(15f);
-        items[3].SetActive(true);
     }
 
     IEnumerator HideItemAfterTime(GameObject item, float time)

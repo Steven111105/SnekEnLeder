@@ -7,6 +7,9 @@ public class Grappling : MonoBehaviour
 {
     Transform gunObject;
     public float grapleSpeed = 3f;
+    // public GameObject grappleHeadObject;
+    // public GameObject grappleRopeObject;
+    public float grappleSpeed = 20f;
 
     private void Start()
     {
@@ -26,14 +29,20 @@ public class Grappling : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             AudioManager.instance.PlaySFX("ShootGrapple");
+
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            playerPos = PlayerUI.instance.playerGameObject.transform.position;
+            
+            direction = (mousePos - playerPos).normalized;
+            
             LaunchGrapple(direction);
         }
-
     }
 
     public void LaunchGrapple(Vector2 dir)
     {
         PlayerUI.instance.playerGameObject.GetComponent<Rigidbody2D>().velocity = dir * grapleSpeed;
+        GrappleHeadScript.instance.Shoot(dir, grappleSpeed, PlayerUI.instance.playerGameObject.transform);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
