@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/LavaFloorScene.unity
     guid: 8f19273f8d8b7ce4fa9f54e4fce73c22
   - enabled: 1
-    path: Assets/Scenes/Epilog.unity
+    path: Assets/Scenes/Epilog1.unity
     guid: d85bd6a8c3255964d944e2c7bde531f9
+  - enabled: 1
+    path: Assets/Scenes/Epilog2.unity
+    guid: d84eadec65cff0145be26bc74bd0b531
   m_configObjects: {}

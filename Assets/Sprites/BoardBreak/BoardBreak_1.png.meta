@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 523ff57d850bad9479c0f7c6a70999f2
+guid: 90d363515f19dd64e99f56807b6dd737
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Lava_0
+      name: BoardBreak_1_0
       rect:
         serializedVersion: 2
-        x: 16
+        x: 40
         y: 19
-        width: 2121
-        height: 2114
+        width: 2120
+        height: 2113
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,8 +111,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b95406310a3ade148afc4c0faeffa8ff
-      internalID: -328566155
+      spriteID: 6f849f162d55fb347be393574a5d974c
+      internalID: -158920533
       vertices: []
       indices: 
       edges: []
@@ -128,7 +128,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Lava_0: -328566155
+      BoardBreak_1_0: -158920533
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

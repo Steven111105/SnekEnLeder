@@ -22,7 +22,7 @@ public class GameUIManager : MonoBehaviour
     public GameObject snakeTest;
     public GameObject snake2;
     public GameObject snake3;
-    [HideInInspector] public int snakeTile;
+    public int snakeTile;
     [HideInInspector] public int snakeTilePrevious;
     [HideInInspector] public int snakeTilePrevious2;
     [HideInInspector] public bool isPlayerIn;
@@ -105,6 +105,7 @@ public class GameUIManager : MonoBehaviour
 
     bool alreadyEatenBySnake = false;
     Direction last2Direction;
+    int wallDurability = 3;
     public void Move(int directionInt)
     {
         if(Time.timeScale == 0f || TransitionManager.instance.isInTransition || DialogManager.instance.isInDialog)
@@ -134,7 +135,24 @@ public class GameUIManager : MonoBehaviour
                     lastMoveDirection = Direction.Down;
                     break;
                 case Direction.Left:
-                    if(snakeTile % 10 == 0 || Direction.Right == lastMoveDirection)
+                    if(SceneManager.GetActiveScene().name == "LavaFloorScene")
+                    {
+                        if(snakeTile == 10)
+                        {
+                            wallDurability -= 1;
+                            if(wallDurability <= 0)
+                            {
+                                TransitionManager.instance.FadeColor("Epilog1", new Color(1,1,1,0), Color.white);
+                            }
+                            else
+                            {
+                                lavaShow?.CrackWall(3-wallDurability);
+                            }
+                        }
+                        if(snakeTile % 10 == 0 || Direction.Right == lastMoveDirection)
+                            return;
+                    }
+                    else if(snakeTile % 10 == 0 || Direction.Right == lastMoveDirection)
                         return;
                     snakeTilePrevious2 = snakeTilePrevious;
                     snakeTilePrevious = snakeTile;
@@ -186,7 +204,7 @@ public class GameUIManager : MonoBehaviour
             if(snakeTile + 1 == pathData.finishIndex)
             {
                 Debug.Log("Snake reached the end!");
-                TransitionManager.instance.FadeColor("Epilog", new Color(1,1,1,0), Color.white);
+                TransitionManager.instance.FadeColor("Epilog2", new Color(1,1,1,0), Color.white);
                 AudioManager.instance.StopBGM();
             }
             else if(snakeTile + 1 == pathData.pathIndexs.Find(x => x == snakeTile + 1))

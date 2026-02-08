@@ -53,7 +53,7 @@ public class DialogManager : MonoBehaviour
                     TransitionManager.instance.FadeColor("Gameplay", new Color(0, 0, 0, 0), new Color(0, 0, 0, 1));
                     return;
                 }
-                else if(SceneManager.GetActiveScene().name == "Epilog")
+                else if(SceneManager.GetActiveScene().name == "Epilog1" || SceneManager.GetActiveScene().name == "Epilog2")
                 {
                     TransitionManager.instance.FadeColor("MainMenu", new Color(0, 0, 0, 0), new Color(0, 0, 0, 1));
                     return;   

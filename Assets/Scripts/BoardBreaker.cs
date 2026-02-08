@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class BoardBreaker : MonoBehaviour
 {
     public Image boardPanel;
-    public Sprite[] boardSprites;
+    public Sprite boardSprites;
     Button button;
 
     int index;
@@ -19,7 +19,7 @@ public class BoardBreaker : MonoBehaviour
 
     public void BoardBreak()
     {
-        boardPanel.sprite = boardSprites[index];
+        boardPanel.sprite = boardSprites;
         index++;
     }
 }

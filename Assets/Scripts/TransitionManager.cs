@@ -39,7 +39,7 @@ public class TransitionManager : MonoBehaviour
         solidColorImage.gameObject.SetActive(true);
         solidColorImage.raycastTarget = true;
         solidColorImage.color = startColor;
-        asyncLoad = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName);
+         asyncLoad = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName);
         asyncLoad.allowSceneActivation = false;
         StartCoroutine(FadeToColor(1f, startColor, endColor));
     }

@@ -12,6 +12,8 @@ public class LavaShow : MonoBehaviour
     // 1 path
     // 2 bomb
 
+    public Sprite[] brokenWallSprites;
+
     public Image boardImage;
 
     void Start()
@@ -21,6 +23,7 @@ public class LavaShow : MonoBehaviour
     }
     IEnumerator ShowPathBoard()
     {
+        yield return new WaitUntil(() => (DialogManager.instance.isInDialog == false && TransitionManager.instance.isInTransition == false));
         boardImage.sprite = lavaSprites[0];
         yield return new WaitForSecondsRealtime(0.3f);
         boardImage.sprite = lavaSprites[1];
@@ -31,5 +34,10 @@ public class LavaShow : MonoBehaviour
     public void SteppedOnBomb()
     {
         boardImage.sprite = lavaSprites[2];
+    }
+
+    public void CrackWall(int index)
+    {
+        boardImage.sprite = brokenWallSprites[index];
     }
 }
