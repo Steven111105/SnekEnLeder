@@ -44,13 +44,13 @@ public class BulletGenerator : MonoBehaviour
         int index = 0;
         while(index < 4)
         {
-            yield return new WaitForSeconds(8f);
+            yield return new WaitForSeconds(7f);
             Vector2 spawnPos = Random.insideUnitCircle * 5f;
             GameObject item = Instantiate(items[index], spawnPos, Quaternion.identity);
             item.SetActive(true);
             
             if(index < 3)
-                StartCoroutine(HideItemAfterTime(items[index], 6f));
+                StartCoroutine(HideItemAfterTime(items[index], 10f));
             else
                 birdHostile = true;
             

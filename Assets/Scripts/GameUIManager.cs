@@ -27,7 +27,7 @@ public class GameUIManager : MonoBehaviour
     [HideInInspector] public int snakeTilePrevious2;
     [HideInInspector] public bool isPlayerIn;
     public ScriptableObject pathIndexData;
-    [HideInInspector] public int playerPositionIndex;
+    public int playerPositionIndex;
     public LavaShow lavaShow;
     [SerializeField] Sprite[] snakeHeadSprite;
     [SerializeField] Sprite[] snakeBodySprite;
@@ -179,6 +179,8 @@ public class GameUIManager : MonoBehaviour
             // Debug.Log(playerPositionIndex);
 
             playerPositionIndex += 4;
+            if(playerPositionIndex > 99)
+                playerPositionIndex = 99;
             // Debug.Log(playerPositionIndex + "after");
             if(isPlayerIn)
                 SnapToSlot(PlayerUI.instance.playerGameObject, playerPositionIndex);
