@@ -26,7 +26,7 @@ public class Grappling : MonoBehaviour
 
         gunObject.transform.localEulerAngles = new Vector3(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
         
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) && Time.timeScale != 0 && !TransitionManager.instance.isInTransition && !DialogManager.instance.isInDialog)
         {
             AudioManager.instance.PlaySFX("ShootGrapple");
 

@@ -28,7 +28,6 @@ public class GameUIManager : MonoBehaviour
     [HideInInspector] public bool isPlayerIn;
     public ScriptableObject pathIndexData;
     [HideInInspector] public int playerPositionIndex;
-    public Image fadePanelImage;
     public LavaShow lavaShow;
     [SerializeField] Sprite[] snakeHeadSprite;
     [SerializeField] Sprite[] snakeBodySprite;
@@ -108,17 +107,9 @@ public class GameUIManager : MonoBehaviour
     Direction last2Direction;
     public void Move(int directionInt)
     {
-        // Note to bc: There dont get called btw idk
-        if (!snakeTest.activeSelf && isPlayerIn)
-        {
-            ResetSnake(62);
-        }
-        else if (!snakeTest.activeSelf && !isPlayerIn)
-        {
-            Debug.Log("Resetting snake to 3");
-            ResetSnake(3);
-        }
-
+        if(Time.timeScale == 0f || TransitionManager.instance.isInTransition || DialogManager.instance.isInDialog)
+            return;
+        
         if (!alreadyEatenBySnake)
         {
             Direction direction = (Direction)directionInt;
@@ -181,7 +172,6 @@ public class GameUIManager : MonoBehaviour
             {
                 AudioManager.instance.PlaySFX("EatPlayer");
                 alreadyEatenBySnake = true;
-                TransitionManager.instance.FadeWhite("GrapplingScene");
             }
         }
         else
@@ -196,14 +186,14 @@ public class GameUIManager : MonoBehaviour
             if(snakeTile + 1 == pathData.finishIndex)
             {
                 Debug.Log("Snake reached the end!");
-                SceneManager.LoadSceneAsync("MainMenu");
+                TransitionManager.instance.FadeColor("Epilog", new Color(1,1,1,0), Color.white);
+                AudioManager.instance.StopBGM();
             }
             else if(snakeTile + 1 == pathData.pathIndexs.Find(x => x == snakeTile + 1))
             {
                 AudioManager.instance.PlaySFX("HitBomb");
                 lavaShow?.SteppedOnBomb();
-                ResetSnake(3);
-                TransitionManager.instance.FadeWhite("LavaFloorScene");
+                TransitionManager.instance.ShowYouDiedPanel("LavaFloorScene");
             }
             else if(snakeTile + 1 > 30)
                 AudioManager.instance.PlaySFX("SafeLava");

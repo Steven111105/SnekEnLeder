@@ -22,21 +22,14 @@ public class LavaShow : MonoBehaviour
     IEnumerator ShowPathBoard()
     {
         boardImage.sprite = lavaSprites[0];
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSecondsRealtime(0.3f);
         boardImage.sprite = lavaSprites[1];
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSecondsRealtime(1.5f);
         boardImage.sprite = lavaSprites[0];
     }
 
     public void SteppedOnBomb()
     {
-        StartCoroutine(SteppedOnBombCoroutine());
-    }
-    
-    public IEnumerator SteppedOnBombCoroutine()
-    {
         boardImage.sprite = lavaSprites[2];
-        yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("LavaFloorScene");
     }
 }

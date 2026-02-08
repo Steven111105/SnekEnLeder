@@ -25,7 +25,7 @@ public class ItemSpawing : MonoBehaviour
         if (isGreen)
         {
             AudioManager.instance.PlaySFX("CollectGreenItem");
-            TransitionManager.instance.FadeWhite("LavaFloorScene");
+            TransitionManager.instance.FadeColor("LavaFloorScene", new Color(1,1,1,0), Color.white);
             // SceneManager.LoadSceneAsync("LavaFloorScene");
         }
         else

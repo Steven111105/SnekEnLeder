@@ -32,8 +32,7 @@ public class DiceScript : MonoBehaviour
     }
     public void RollDice()
     {
-        int randomRoll = Random.Range(1, 7);
-        diceImage.sprite = diceFaces[randomRoll - 1];
+        if(Time.timeScale == 0) return;
         StartCoroutine(AnimateDiceRoll());
     }
 

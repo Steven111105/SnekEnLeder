@@ -10,6 +10,7 @@ public class TransitionManager : MonoBehaviour
     public GameObject youDiedPanel;
     bool retryButtonPressed;
     AsyncOperation asyncLoad;
+    public bool isInTransition;
 
     private void Awake()
     {
@@ -29,24 +30,26 @@ public class TransitionManager : MonoBehaviour
         }
     }
 
-    public void FadeWhite(string sceneName)
+    public void FadeColor(string sceneName, Color startColor, Color endColor)
     {
+        isInTransition = true;
         if(asyncLoad != null)
             return;
         Debug.Log("Fading to white and loading scene: " + sceneName);
         solidColorImage.gameObject.SetActive(true);
         solidColorImage.raycastTarget = true;
-        solidColorImage.color = new Color(1, 1, 1, 0);
+        solidColorImage.color = startColor;
         asyncLoad = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName);
         asyncLoad.allowSceneActivation = false;
-        StartCoroutine(FadeToWhite(1f));
+        StartCoroutine(FadeToColor(1f, startColor, endColor));
     }
 
-    IEnumerator FadeToWhite(float duration)
+    IEnumerator FadeToColor(float duratio, Color startColor, Color endColor)
     {
+        float duration = 1f;
         float t = 0;
-        Color originalColor = solidColorImage.color;
-        Color targetColor = Color.white;
+        Color originalColor = startColor;
+        Color targetColor = endColor;
         while (t < duration)
         {
             t += Time.deltaTime;
@@ -64,7 +67,7 @@ public class TransitionManager : MonoBehaviour
     {
         float t = 0;
         Color originalColor = solidColorImage.color;
-        Color targetColor = new Color(1, 1, 1, 0);
+        Color targetColor = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
         while (t < duration)
         {
             t += Time.deltaTime;
@@ -74,6 +77,7 @@ public class TransitionManager : MonoBehaviour
         solidColorImage.color = targetColor;
         solidColorImage.raycastTarget = false;
         solidColorImage.gameObject.SetActive(false);
+        isInTransition = false;
     }
 
     public void ShowYouDiedPanel(string repeatSceneName)

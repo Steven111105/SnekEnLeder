@@ -24,7 +24,7 @@ public class BulletScript : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player" && BulletGenerator.instance.birdHostile)
         {
-            SceneManager.LoadScene("GrapplingScene");
+            TransitionManager.instance.ShowYouDiedPanel("GrapplingScene");
         }
     }
 }

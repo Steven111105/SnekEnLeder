@@ -9,7 +9,7 @@ public class MainMenuManager : MonoBehaviour
     public Button quitButton;
     public void Play()
     {
-        SceneManager.LoadSceneAsync("Gameplay");
+        SceneManager.LoadSceneAsync("Prolog");
     }
 
     public void Quit()

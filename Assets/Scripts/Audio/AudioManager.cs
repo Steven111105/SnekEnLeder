@@ -135,8 +135,13 @@ public class AudioManager : MonoBehaviour
         SFX bgm = bgmList.Find(b => b.name == bgmName);
         if (bgm != null)
         {
-            StartCoroutine(FadeBGMOut(bgm));
+            StartCoroutine(FadeBGMIn(bgm));
         }
+    }
+    
+    public void StopBGM()
+    {
+        GetComponent<AudioSource>().Stop();
     }
 
     IEnumerator FadeBGMOut(SFX targetBGM)
@@ -150,15 +155,13 @@ public class AudioManager : MonoBehaviour
             t += Time.deltaTime;
             yield return null;
         }
-
-        StartCoroutine(FadeBGMIn(targetBGM));
     }
 
     IEnumerator FadeBGMIn(SFX targetBGM)
     {
         float targetVolume = targetBGM.volume;
         AudioSource bgmSource = gameObject.GetComponent<AudioSource>();
-        bgmSource.volume = 0f;
+        bgmSource.volume = 1f;
         float t = 0f;
         float duration = 0.5f;
 

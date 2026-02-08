@@ -1491,13 +1491,13 @@ MonoBehaviour:
   bgmList:
   - name: Phase1
     clip: {fileID: 8300000, guid: 19fe4c1bf7000c0479cd64bd4ab26185, type: 3}
-    volume: 1
+    volume: 0.3
   - name: Phase3
     clip: {fileID: 8300000, guid: 52e43e9f4e9cf9c4daa188014a229ec0, type: 3}
-    volume: 1
+    volume: 0.3
   - name: Phase4
     clip: {fileID: 8300000, guid: 7de31cfa4ecb1e24783e54b512f7771a, type: 3}
-    volume: 1
+    volume: 0.3
   sfxList:
   - name: DiceRoll
     clip: {fileID: 8300000, guid: c3d28cefa62c2634fb8db3cebef4b2b4, type: 3}
